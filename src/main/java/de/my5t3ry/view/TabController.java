@@ -2,17 +2,19 @@ package de.my5t3ry.view;
 
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class TabController implements Initializable {
+@org.springframework.stereotype.Controller
+public class TabController extends Controller {
     private static final Logger log = LoggerFactory.getLogger(TabController.class);
+
+
+    @FXML
+    AnchorPane root;
 
     @FXML
     private TabPane mainTab;
@@ -24,10 +26,13 @@ public class TabController implements Initializable {
     private Tab configurationTab;
 
 
-   
+    @Override
+    public AnchorPane getRoot() {
+        return root;
+    }
 
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
+    public void init() {
         mainTab.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> observable,
                                                                         Tab oldValue, Tab newValue) -> {
             if (newValue == projectsTab) {

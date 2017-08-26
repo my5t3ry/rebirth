@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="configurationRoot"  fx:controller="de.my5t3ry.view.ConfigurationController" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+            xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <SplitPane dividerPositions="0.29797979797979796" layoutX="6.0" layoutY="35.0" prefHeight="298.0" prefWidth="586.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <ToolBar layoutY="256.0" prefHeight="40.0" prefWidth="169.0">
+                            <items>
+                                <Button fx:id="dataButton" mnemonicParsing="false" onAction="#onSelectDataButton" text="+"/>
+                            </items>
+                        </ToolBar>
+                        <VBox layoutX="4.0" layoutY="2.0" prefHeight="257.0" prefWidth="163.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"/>
+            </items>
+        </SplitPane>
+        <Label layoutX="6.0" layoutY="6.0" text="Project Folders"/>
+    </children>
+</AnchorPane>
