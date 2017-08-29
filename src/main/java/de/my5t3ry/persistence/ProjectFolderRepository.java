@@ -1,6 +1,6 @@
 package de.my5t3ry.persistence;
 
-import de.my5t3ry.domain.ProjectsFolder;
+import de.my5t3ry.domain.projects.ProjectsFolder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

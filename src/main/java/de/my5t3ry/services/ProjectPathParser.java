@@ -35,6 +35,8 @@ public class ProjectPathParser {
             gZipFile.decompress(outputFile);
             String xmlString = FileUtils.readFileToString(outputFile);
             JSONObject xmlJSONObj = XML.toJSONObject(xmlString);
+
+
             String jsonPrettyPrintString = xmlJSONObj.toString();
             System.out.println(jsonPrettyPrintString);
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package de.my5t3ry.domain;
+package de.my5t3ry.domain.projects;
 
 
 import javax.persistence.Entity;
