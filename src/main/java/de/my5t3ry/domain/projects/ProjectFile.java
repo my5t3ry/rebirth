@@ -1,6 +1,7 @@
 package de.my5t3ry.domain.projects;
 
 import de.my5t3ry.domain.device.Device;
+import de.my5t3ry.domain.device.DeviceManufacturer;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,8 @@ public class ProjectFile {
     @ManyToMany
     protected List<Device> externalDevices;
 
+    @ManyToMany
+    protected List<DeviceManufacturer> manufacturers;
 
     protected Integer tracks;
 
