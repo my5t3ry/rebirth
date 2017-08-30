@@ -20,13 +20,13 @@ public class ProjectFile {
 
     protected String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     protected List<Device> internalDevices;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     protected List<Device> externalDevices;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     protected List<DeviceManufacturer> manufacturers;
 
     protected Integer groupTracks;

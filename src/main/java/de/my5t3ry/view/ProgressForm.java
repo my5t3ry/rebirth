@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,10 +16,9 @@ import static javafx.application.Application.launch;
  * created by: sascha.bast
  * since: 27.08.17
  */
-public  class ProgressForm {
+public class ProgressForm {
     private final Stage dialogStage;
     private final ProgressBar pb = new ProgressBar();
-    private final ProgressIndicator pin = new ProgressIndicator();
 
     public ProgressForm() {
         dialogStage = new Stage();
@@ -30,15 +28,14 @@ public  class ProgressForm {
 
         // PROGRESS BAR
         final Label label = new Label();
-        label.setText("alerto");
+        label.setText("paring projects");
 
         pb.setProgress(-1F);
-        pin.setProgress(-1F);
 
         final HBox hb = new HBox();
         hb.setSpacing(5);
         hb.setAlignment(Pos.CENTER);
-        hb.getChildren().addAll(pb, pin);
+        hb.getChildren().addAll(pb);
 
         Scene scene = new Scene(hb);
         dialogStage.setScene(scene);
@@ -46,7 +43,6 @@ public  class ProgressForm {
 
     public void activateProgressBar(final Task<?> task) {
         pb.progressProperty().bind(task.progressProperty());
-        pin.progressProperty().bind(task.progressProperty());
         dialogStage.show();
     }
 

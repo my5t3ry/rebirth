@@ -1,5 +1,6 @@
 package de.my5t3ry.view;
 
+import de.my5t3ry.services.ProjectFileInitService;
 import de.my5t3ry.services.ProjectPathParser;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.stage.DirectoryChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * created by: sascha.bast
@@ -17,6 +19,10 @@ import java.io.File;
  */
 @org.springframework.stereotype.Controller
 public class ConfigurationController extends Controller {
+
+    @Autowired
+    private ProjectFileInitService projectFileInitService;
+
     @Autowired
     private ProjectPathParser projectPathParser;
 
@@ -47,15 +53,16 @@ public class ConfigurationController extends Controller {
     public void onSelectDataButton(ActionEvent event) {
         DirectoryChooser chooser = new DirectoryChooser();
         File dir = chooser.showDialog(configurationRoot.getScene().getWindow());
-
         ProgressForm pForm = new ProgressForm();
+        final List<File> abletonFiles = projectPathParser.parsePath(dir);
 
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {
-                updateProgress(10, 10);
-
-                projectPathParser.parsePath(dir);
+                abletonFiles.forEach(file -> {
+                    updateProgress(abletonFiles.indexOf(file), abletonFiles.size());
+                    projectFileInitService.parseAndSaveAbletonFile(file);
+                });
                 return null;
             }
         };

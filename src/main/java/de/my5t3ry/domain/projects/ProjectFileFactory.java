@@ -25,6 +25,7 @@ import java.util.Set;
 @Service
 public class ProjectFileFactory {
 
+
     private final XPath xPath = XPathFactory.newInstance().newXPath();
     private final String INTERNAL_DEVICES_PATH = ".//LiveSet//Tracks//DeviceChain//Devices[1]/*";
     private final String EXTERNAL_VST = ".//LiveSet//Tracks//DeviceChain//Devices//PluginDevice//PluginDesc//VstPluginInfo//PlugName";
@@ -33,7 +34,10 @@ public class ProjectFileFactory {
     private final String GROUP_TRACKS = "count(.//LiveSet//Tracks//GroupTrack)";
     private final String MIDI_TRACKS = "count(.//LiveSet//Tracks//MidiTrack)";
     private final String AUDIO_TRACKS = "count(.//LiveSet//Tracks//AudioTrack)";
-    private final String CREATOR = ".//at";
+//    private final String CREATOR = ".//at";
+
+
+
 
     public final ProjectFile build(final Document doc, final String name) {
         final ProjectFile result = new ProjectFile();

@@ -20,7 +20,6 @@ public class GZipFile {
 
     public void decompress(final File output) {
         byte[] buffer = new byte[1024];
-
         try {
             GZIPInputStream gzip =
                     new GZIPInputStream(new FileInputStream(input));
@@ -32,7 +31,6 @@ public class GZipFile {
             }
             gzip.close();
             out.close();
-            System.out.println("Done");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
