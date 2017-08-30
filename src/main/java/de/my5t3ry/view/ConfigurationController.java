@@ -2,7 +2,7 @@ package de.my5t3ry.view;
 
 import de.my5t3ry.services.ProjectFileInitService;
 import de.my5t3ry.services.ProjectPathParser;
-import javafx.concurrent.Task;
+import de.my5t3ry.task.PathScanTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,21 +55,11 @@ public class ConfigurationController extends Controller {
         File dir = chooser.showDialog(configurationRoot.getScene().getWindow());
         ProgressForm pForm = new ProgressForm();
         final List<File> abletonFiles = projectPathParser.parsePath(dir);
+        final PathScanTask pathScanTask = new PathScanTask(abletonFiles,projectFileInitService);
 
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-                abletonFiles.forEach(file -> {
-                    updateProgress(abletonFiles.indexOf(file), abletonFiles.size());
-                    projectFileInitService.parseAndSaveAbletonFile(file);
-                });
-                return null;
-            }
-        };
+        pForm.activateProgressBar(pathScanTask);
 
-        pForm.activateProgressBar(task);
-
-        task.setOnSucceeded(successEvent -> {
+        pathScanTask.setOnSucceeded(successEvent -> {
             pForm.getDialogStage().close();
             dataButton.setDisable(false);
         });
@@ -77,7 +67,7 @@ public class ConfigurationController extends Controller {
         dataButton.setDisable(true);
         pForm.getDialogStage().show();
 
-        Thread thread = new Thread(task);
+        Thread thread = new Thread(pathScanTask);
         thread.start();
         if (dir == null) {
             return;
