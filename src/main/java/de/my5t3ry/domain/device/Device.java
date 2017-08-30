@@ -19,10 +19,29 @@ public class Device {
 
     final String name;
 
-    final int count;
+    Integer count;
 
-    public Device(final String name, final int count) {
+    public Device(final String name) {
         this.name = name;
-        this.count = count;
+        this.count = 1;
+    }
+
+    public void  addDevice(){
+        count++;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Device device = (Device) o;
+
+        return name != null ? name.equals(device.name) : device.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }
