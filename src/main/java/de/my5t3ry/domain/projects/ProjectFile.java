@@ -1,5 +1,7 @@
 package de.my5t3ry.domain.projects;
 
+import de.my5t3ry.domain.device.Device;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,8 +18,13 @@ public class ProjectFile {
     protected Long id;
 
     protected String name;
-    @ElementCollection
-    protected List<String> vsts;
+
+    @ManyToMany
+    protected List<Device> internalDevices;
+
+    @ManyToMany
+    protected List<Device> externalDevices;
+
 
     protected Integer tracks;
 
