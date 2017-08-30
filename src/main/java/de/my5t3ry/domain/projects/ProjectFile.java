@@ -29,9 +29,11 @@ public class ProjectFile {
     @ManyToMany
     protected List<DeviceManufacturer> manufacturers;
 
-    protected Integer tracks;
+    protected Integer groupTracks;
+    protected Integer midiTracks;
+    protected Integer audioTracks;
 
-    
-
-
+    public Integer getTotalTracks() {
+        return groupTracks + midiTracks + audioTracks;
+    }
 }

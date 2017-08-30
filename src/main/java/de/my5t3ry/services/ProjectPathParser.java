@@ -49,7 +49,7 @@ public class ProjectPathParser {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
             Document document = builder.parse(new FileInputStream(outputFile));
-            projectFileRepository.save(projectFileFactory.build(document));
+            projectFileRepository.save(projectFileFactory.build(document,file.getName()));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {

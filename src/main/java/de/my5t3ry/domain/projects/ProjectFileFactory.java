@@ -30,16 +30,33 @@ public class ProjectFileFactory {
     private final String EXTERNAL_VST = ".//LiveSet//Tracks//DeviceChain//Devices//PluginDevice//PluginDesc//VstPluginInfo//PlugName";
     private final String EXTERNAL_AU = ".//LiveSet//Tracks//DeviceChain//Devices//AuPluginDevice//PluginDesc//AuPluginInfo/Name";
     private final String MANUFACTURER = ".//LiveSet//Tracks//DeviceChain//Devices//AuPluginDevice//PluginDesc//AuPluginInfo/Manufacturer";
+    private final String GROUP_TRACKS = "count(.//LiveSet//Tracks//GroupTrack)";
+    private final String MIDI_TRACKS = "count(.//LiveSet//Tracks//MidiTrack)";
+    private final String AUDIO_TRACKS = "count(.//LiveSet//Tracks//AudioTrack)";
+    private final String CREATOR = ".//at";
 
-    public final ProjectFile build(final Document doc) {
+    public final ProjectFile build(final Document doc, final String name) {
         final ProjectFile result = new ProjectFile();
+        result.name = name;
         result.internalDevices = getDevices(doc, INTERNAL_DEVICES_PATH, new InternalDeviceNameExtractor());
         final List<Device> externalDevice = getDevices(doc, EXTERNAL_VST, new ExternalDeviceNameExtractor());
         externalDevice.addAll(getDevices(doc, EXTERNAL_AU, new ExternalDeviceNameExtractor()));
         result.externalDevices = externalDevice;
         result.manufacturers = getManufacturers(doc);
+        result.groupTracks = getTrackCount(doc, GROUP_TRACKS);
+        result.midiTracks = getTrackCount(doc, MIDI_TRACKS);
+        result.audioTracks = getTrackCount(doc, AUDIO_TRACKS);
         return result;
     }
+
+    private Integer getTrackCount(final Document doc, final String path) {
+        try {
+            return ((Double) xPath.compile(path).evaluate(doc, XPathConstants.NUMBER)).intValue();
+        } catch (XPathExpressionException e) {
+            throw new IllegalStateException("Could not read Ableton File", e);
+        }
+    }
+
 
     private List<DeviceManufacturer> getManufacturers(final Document doc) {
         final Set<DeviceManufacturer> result = new HashSet<>();
@@ -50,7 +67,7 @@ public class ProjectFileFactory {
                 result.add(new DeviceManufacturer(manufacturerName));
             }
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Could not read Ableton File", e);
         }
         return new ArrayList<>(result);
     }
@@ -69,7 +86,7 @@ public class ProjectFileFactory {
                 }
             }
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Could not read Ableton File", e);
         }
         return result;
     }
