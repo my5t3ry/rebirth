@@ -16,7 +16,7 @@ public class ProjectsFolderCellFactory implements Callback<ListView<ProjectsFold
             protected void updateItem(ProjectsFolder projectsFolder, boolean bln) {
                 super.updateItem(projectsFolder, bln);
                 if (projectsFolder != null) {
-                    setText(projectsFolder.getPath());
+                    setText(projectsFolder.getFolderPath());
                 }
             }
         };

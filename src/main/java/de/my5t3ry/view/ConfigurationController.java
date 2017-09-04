@@ -70,7 +70,7 @@ public class ConfigurationController extends Controller {
     @FXML
     public void onSelectDataButton(final ActionEvent event) {
         DirectoryChooser chooser = new DirectoryChooser();
-        File dir = chooser.showDialog(configurationRoot.getScene().getWindow());
+        File dir = chooser.showDialog(configurationRoot.getScene().getWindow());                                                            
         ProgressForm pForm = new ProgressForm();
         final List<File> abletonFiles = projectPathParser.parsePath(dir);
         final PathScanTask pathScanTask = new PathScanTask(abletonFiles, projectFileInitService);

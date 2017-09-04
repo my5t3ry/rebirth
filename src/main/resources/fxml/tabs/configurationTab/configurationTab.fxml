@@ -18,7 +18,7 @@
                                 <Button fx:id="dataButton" mnemonicParsing="false" onAction="#onSelectDataButton" text="+" />
                             </items>
                         </ToolBar>
-                  <ListView layoutY="-1.0" prefHeight="257.0" prefWidth="169.0" fx:id="projectsFolderList" />
+                  <ListView fx:id="projectsFolderList" prefHeight="256.0" prefWidth="169.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
