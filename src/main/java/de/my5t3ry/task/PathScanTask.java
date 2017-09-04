@@ -23,7 +23,7 @@ public class PathScanTask extends Task<Void> {
     protected Void call() throws Exception {
         abletonFiles.forEach(file -> {
             updateProgress(abletonFiles.indexOf(file), abletonFiles.size());
-            updateMessage("parse: " + file.getAbsolutePath());
+            updateMessage("parse: " + file.getName());
             projectFileInitService.parseAndSaveAbletonFile(file);
         });
         return null;

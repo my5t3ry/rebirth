@@ -1,11 +1,11 @@
 package de.my5t3ry.view;
 
 import de.my5t3ry.task.PathScanTask;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,23 +19,20 @@ import static javafx.application.Application.launch;
 public class ProgressForm {
     private final Stage dialogStage;
     private final ProgressBar pb = new ProgressBar();
-    private String currentCaptionInfo;
     private final Label label = new Label();
 
     public ProgressForm() {
         dialogStage = new Stage();
+        GridPane root = new GridPane();
+        root.setPadding(new Insets(20));
+        root.addColumn(0, pb);
+        root.addColumn(0, label);
         dialogStage.initStyle(StageStyle.UTILITY);
         dialogStage.setResizable(false);
         dialogStage.initModality(Modality.APPLICATION_MODAL);
-        label.setText("Paring projects");
         pb.setProgress(-1F);
-        final HBox hb = new HBox();
-        hb.setSpacing(5);
-        hb.setAlignment(Pos.CENTER);
-        hb.getChildren().addAll(pb, label);
-
-
-        Scene scene = new Scene(hb);
+        Scene scene = new Scene(root, 300, 100);
+        dialogStage.sizeToScene();
         dialogStage.setScene(scene);
     }
 
@@ -53,7 +50,4 @@ public class ProgressForm {
         launch(args);
     }
 
-    public void setCurrentCaptionInfo(final String currentCaptionInfo) {
-        this.label.setText(currentCaptionInfo);
-    }
 }
