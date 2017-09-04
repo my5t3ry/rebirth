@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="configurationRoot"  fx:controller="de.my5t3ry.view.ConfigurationController" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
-            xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:id="configurationRoot" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.my5t3ry.view.ConfigurationController">
     <children>
         <SplitPane dividerPositions="0.29797979797979796" layoutX="6.0" layoutY="35.0" prefHeight="298.0" prefWidth="586.0">
             <items>
@@ -16,15 +15,15 @@
                     <children>
                         <ToolBar layoutY="256.0" prefHeight="40.0" prefWidth="169.0">
                             <items>
-                                <Button fx:id="dataButton" mnemonicParsing="false" onAction="#onSelectDataButton" text="+"/>
+                                <Button fx:id="dataButton" mnemonicParsing="false" onAction="#onSelectDataButton" text="+" />
                             </items>
                         </ToolBar>
-                        <VBox layoutX="4.0" layoutY="2.0" prefHeight="257.0" prefWidth="163.0"/>
+                  <ListView layoutY="-1.0" prefHeight="257.0" prefWidth="169.0" fx:id="projectsFolderList" />
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"/>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
             </items>
         </SplitPane>
-        <Label layoutX="6.0" layoutY="6.0" text="Project Folders"/>
+        <Label layoutX="6.0" layoutY="6.0" text="Project Folders" />
     </children>
 </AnchorPane>

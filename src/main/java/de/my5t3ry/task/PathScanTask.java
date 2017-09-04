@@ -26,6 +26,7 @@ public class PathScanTask extends Task<Void> {
             updateMessage("parse: " + file.getName());
             projectFileInitService.parseAndSaveAbletonFile(file);
         });
+
         return null;
     }
 

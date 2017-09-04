@@ -18,6 +18,7 @@ public class ProjectsFolder {
     private Long id;
 
     private String folderPath;
+    private String path;
 
     public ProjectsFolder(final String folderPath) {
         this.folderPath = folderPath;
@@ -25,5 +26,9 @@ public class ProjectsFolder {
 
     public Long getId() {
         return id;
+    }
+
+    public String getPath() {
+        return path;
     }
 }
